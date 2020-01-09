@@ -15,8 +15,8 @@ A modular, loosely-coupled web application, with SOLID principles, built using A
 
 ## Running the application
 
-1- Clone the repository or download the .ZIP to a local folder.
-2- Open the solution file in Visual Studio
-3- Change the DB connection string inside the "appsettings.json" file.
-4- Build the entire solution.
-5- Run the application.
+* Clone the repository or download the .ZIP to a local folder.
+* Open the solution file in Visual Studio
+* Change the DB connection string inside the "appsettings.json" file.
+* Build the entire solution.
+* Run the application.

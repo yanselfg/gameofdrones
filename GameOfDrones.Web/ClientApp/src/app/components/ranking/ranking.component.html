@@ -1,0 +1,27 @@
+<h1>Ranking</h1>
+
+<p *ngIf="!ranking && !logs"><em>Loading...</em></p>
+
+<table class='table table-striped' *ngIf="ranking">
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Player Name</th>
+      <th>Won Games</th>
+      <th>Won Rounds</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of ranking">
+      <td>{{ item.position }}</td>
+      <td>{{ item.playerName }}</td>
+      <td>{{ item.wonGames }}</td>
+      <td>{{ item.wonRounds }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination-controls *ngIf="ranking && ranking.length > 10"
+                     autoHide="true"
+                     responsive="true"
+                     (pageChange)="pageChanged($event)"></pagination-controls>

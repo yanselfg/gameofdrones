@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="body-content">
+    <div class="row">
+      <div *ngIf="!game.id && !game.showWinner" class="col-xs-12 col-sm-12 col-md-6 offset-md-3">
+        <h1>Enter Player's Name</h1>
+        <form (ngSubmit)="onSubmitGame()" #gameForm="ngForm">
+          <div class="form-group">
+            <input [hidden]="true" id="id" name="id" type="hidden" required [(ngModel)]="game.id" #id="ngModel" />
+            <label for="game.players[0].name">Player One</label>
+            <input type="text" class="form-control" id="game.players[0].name" name="game.players[0].name" required [(ngModel)]="game.players[0].name" #playerOne="ngModel">
+            <div [hidden]="playerOne.valid || playerOne.pristine" class="alert alert-danger">
+              Player Name is required
+            </div>
+            <label for="game.players[1].name">Player Two</label>
+            <input type="text" class="form-control" id="game.players[1].name" name="game.players[1].name" required [(ngModel)]="game.players[1].name" #playerTwo="ngModel">
+            <div [hidden]="playerTwo.valid || playerTwo.pristine" class="alert alert-danger">
+              Player Name is required
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success" [disabled]="!gameForm.form.valid">Start</button>
+        </form>
+      </div>
+      <div *ngIf="game.id && !game.showWinner" class="col-xs-12 col-sm-12 col-md-6">
+        <h1>Round {{ game.currentRound.number }}</h1>
+        <div *ngIf="!game.currentRound.playersMoves[0].selected && !game.currentRound.playersMoves[1].selected">
+          <h4>{{ game.currentRound.playersMoves[0].playerName }}</h4>
+          <form (ngSubmit)="onSubmitMove()" #moveFormOne="ngForm">
+            <div class="form-group" [hidden]="game.currentRound.playersMoves[0].selected">
+              <label for="game.currentRound.playersMoves[0].moveName">Select Move</label>
+              <select type="text"
+                      class="form-control"
+                      id="game.currentRound.playersMoves[0].moveName"
+                      name="game.currentRound.playersMoves[0].moveName"
+                      required [(ngModel)]="game.currentRound.playersMoves[0].moveName"
+                      #moveOne="ngModel">
+                <!--<option [value]=""></option>-->
+                <option *ngFor="let move of moves" [value]="move">{{ move }}</option>
+              </select>
+
+              <div [hidden]="moveOne.valid || moveOne.pristine" class="alert alert-danger">
+                Move is required
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!moveFormOne.form.valid">Ok</button>
+          </form>
+        </div>
+
+        <div *ngIf="game.currentRound.playersMoves[0].selected && !game.currentRound.playersMoves[1].selected">
+          <h4>{{ game.currentRound.playersMoves[1].playerName }}</h4>
+          <form (ngSubmit)="onSubmitMove()" #moveFormTwo="ngForm">
+            <div class="form-group" [hidden]="game.currentRound.playersMoves[1].selected">
+              <label for="game.currentRound.playersMoves[1].moveName">Select Move</label>
+              <select type="text"
+                      class="form-control"
+                      id="game.currentRound.playersMoves[1].moveName"
+                      name="game.currentRound.playersMoves[0].moveName"
+                      required [(ngModel)]="game.currentRound.playersMoves[1].moveName"
+                      #moveTwo="ngModel">
+                <!--<option [value]=""></option>-->
+                <option *ngFor="let move of moves" [value]="move">{{ move }}</option>
+              </select>
+
+              <div [hidden]="moveTwo.valid || moveTwo.pristine" class="alert alert-danger">
+                Move is required
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!moveFormTwo.form.valid">Ok</button>
+          </form>
+        </div>
+      </div>
+
+      <div *ngIf="game.currentRound.showScore && !game.showWinner" class="col-xs-12 col-sm-12 col-md-6">
+        <h1>Score</h1>
+        <table class='table table-striped'>
+          <thead>
+            <tr>
+              <th>Round</th>
+              <th>Winner</th>
+              <th>Move</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of game.rounds">
+              <td>{{ r.number }}</td>
+              <td>{{ r.winnerName == '' ? '-' : r.winnerName }}</td>
+              <td>{{ r.winnerMove }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="game.showWinner" class="col-xs-12 col-sm-12 col-md-8 offset-md-2" style="text-align:center">
+        <div style="margin-bottom:50px">
+          <h1>We have a <span style="color:darkred">WINNER !!!</span></h1>
+          <h1><span style="color:darkred">{{ game.winnerName }}</span> is the new EMPEROR !!!</h1>
+        </div>
+        <button type="button" class="btn btn-success" (click)="onPlayAgain()">Play Again</button>
+      </div>
+
+      <!--<div [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row">
+          <div class="col-xs-3">Name</div>
+          <div class="col-xs-9">{{ //model.name }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Gender</div>
+          <div class="col-xs-9">{{ //model.gender }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+      </div>-->
+    </div>
+  </div>
+</div>

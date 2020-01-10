@@ -1,4 +1,4 @@
-## Game Of Drones. A little game to demostrate how to integrate Angular & .NET Core
+## Game Of Drones. A little game to show how to integrate Angular & .NET Core
 
 A modular, loosely-coupled web application, with SOLID principles, built using Angular 6 and ASP.NET Core 2.1.The following provides a simple layout of a web application organized by the principles defined in the Clean architecture:
 

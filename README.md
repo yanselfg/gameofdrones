@@ -16,7 +16,8 @@ A modular, loosely-coupled web application, with SOLID principles, built using A
 ## Running the application
 
 * Clone the repository or download the .ZIP to a local folder.
-* Open the solution file in Visual Studio
+* Open the solution file in Visual Studio.
+* Open comand prompt inside "GameOfDrones.Web/ClientApp" folder and type: "npm install" to restore all node modules.
 * Change the DB connection string inside the "appsettings.json" file.
 * Build the entire solution.
 * Run the application.
